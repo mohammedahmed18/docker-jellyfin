@@ -1,0 +1,30 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+if [[ -z "${FFMPEG_PATH}" ]] || [[ ! -f "${FFMPEG_PATH}" ]]; then
+    FFMPEG_PATH=/usr/lib/jellyfin-ffmpeg/ffmpeg
+fi
+
+# TODO: make those through args
+
+
+
+
+export \
+    HOME="/config" \
+    JELLYFIN_DATA_DIR="/config/data" \
+    JELLYFIN_CONFIG_DIR="/config" \
+    JELLYFIN_LOG_DIR="/config/log" \
+    JELLYFIN_CACHE_DIR="/config/cache" \
+    JELLYFIN_WEB_DIR="/usr/share/jellyfin/web" \
+    ANI_AR_REMOTE_GIST_ID="08527c7de57cd8d5c027f22ae929f750" \
+    ANI_AR_REMOTE_GIST_FILE_NAME="ani-ar-for-jellyfin-list.json" \
+    ANI_AR_ANIME_SHOWS_FOLDER_PATH="/app/media/anime-shows/"
+
+mkdir -p $ANI_AR_ANIME_SHOWS_FOLDER_PATH
+
+exec ani-ar jelly &
+exec \
+    s6-notifyoncheck -d -n 300 -w 1000 \
+        s6-setuidgid abc /usr/bin/jellyfin \
+        --ffmpeg="${FFMPEG_PATH}"
