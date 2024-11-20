@@ -35,8 +35,8 @@ RUN \
 # add local files
 COPY root/ /
 
-RUN curl -L -o /usr/local/bin/ani-ar https://github.com/mohammedahmed18/ani-ar/releases/latest/download/ani-ar && \
-    chmod +x /usr/local/bin/ani-ar
+ADD https://www.dropbox.com/scl/fi/ph6x5gbc84c1rxemb0dbb/ani-ar?rlkey=e4qjzrz2zo59a9rf8j28q1f57&e=1&st=fxa3161z&dl=1 /usr/local/bin/ani-ar
+RUN chmod +x /usr/local/bin/ani-ar
 
 # ports and volumes
 EXPOSE 8096 8920
