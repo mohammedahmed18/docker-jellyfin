@@ -20,8 +20,9 @@ export \
     ANI_AR_REMOTE_GIST_ID="08527c7de57cd8d5c027f22ae929f750" \
     ANI_AR_REMOTE_GIST_FILE_NAME="ani-ar-for-jellyfin-list.json" \
     ANI_AR_ANIME_SHOWS_FOLDER_PATH="/app/media/anime-shows/"
+    ANI_AR_ANIME_MOVIES_FOLDER_PATH="/app/media/anime-movies/"
 
-mkdir -p $ANI_AR_ANIME_SHOWS_FOLDER_PATH
+mkdir -p $ANI_AR_ANIME_SHOWS_FOLDER_PATH $ANI_AR_ANIME_MOVIES_FOLDER_PATH
 
 exec ani-ar jelly &
 exec \
